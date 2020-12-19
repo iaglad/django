@@ -1,0 +1,47 @@
+{% extends "students/base.html" %}
+{% load static %}
+{% block meta_title %}Журнал{% endblock meta_title %}
+{% block title %}Журнал посещений{% endblock title %}
+
+{% block content %}
+
+<div>
+  <p class="centerp">
+    <a href="#">&#8592;</a> June 2020 <a href="#">&#8594;</a>
+  </p>
+  <table class="table table-hover table-striped table-responsive table-bordered">
+    <thead class="centerp">
+      <th>#</th>
+      <th>Студент</th>
+      <th>Mo<br>1</th>      <th>Tu<br>2</th>      <th>We<br>3</th>      <th>Th<br>4</th>
+      <th>Fr<br>5</th>      <th>Sa<br>6</th>      <th>Su<br>7</th>      <th>Mo<br>8</th>
+      <th>Tu<br>9</th>      <th>We<br>10</th>      <th>Th<br>11</th>      <th>Fr<br>12</th>
+      <th>Sa<br>13</th>      <th>Su<br>14</th>      <th>Mo<br>15</th>
+      <th>Tu<br>16</th>      <th>We<br>17</th>      <th>Th<br>18</th>      <th>Fr<br>19</th>
+      <th>Sa<br>20</th>      <th>Su<br>21</th>      <th>Mo<br>22</th>      <th>Tu<br>23</th>
+      <th>We<br>24</th>      <th>Th<br>25</th>      <th>Fr<br>26</th>      <th>Sa<br>27</th>
+      <th>Su<br>28</th>      <th>Mo<br>29</th>      <th>Tu<br>30</th>      <th>We<br>31</th>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.id }}</td>
+        <td class="text-nowrap"><a title="Изменить" href="{% url 'students_edit' student.id %}">{{ student.last_name }} {{ student.first_name }}</a></td>
+        <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td>
+        <td>&#9745;</td> <td>&#10065;</td> <td>&#9745;</td> <td>&#10065;</td>
+        <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td>
+        <td>&#10065;</td> <td>&#9745;</td> <td>&#10065;</td> <td>&#10065;</td>
+        <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td>
+        <td>&#9745;</td> <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td>
+        <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td>
+        <td>&#10065;</td> <td>&#10065;</td> <td>&#10065;</td> 
+      </tr>
+      {% endfor %}
+    </tbody>
+
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}
+{% block logo %}logo{% endblock %}

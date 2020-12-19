@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8"/>
+    <!-- Include Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- -->
+    <title>Сервис учета студентов</title>
+    <meta name="description" content="Система учета студентов"/>
+  </head>
+  <body>
+    <!-- container begin -->
+    <div class="container">
+
+      <!-- header begin -->
+      <div class="row mt-3" id="header">
+        <!-- logo -->
+        <div class="col-sm-8">
+          <h1>Сервис учета студентов</h1>
+        </div>
+
+        <!-- group selector -->
+        <div class="col-sm-4" id="group-selector">
+          <label for="group"><strong>Группа:</strong></label>
+          <select class="custom-select" name="group" id="group">
+            <option value="">Все студенты</option>
+            <option value="">МтМ - 21, Літвінов Дмитро (№ 254)</option>
+            <option value="">МтМ - 22, Віталій Подоба (№ 410)</option>
+          </select>
+        </div>
+      </div>
+      <!-- header end-->
+
+      <!-- subheader begin -->
+      <div class="row" id="sub-header">
+        <div class="col-sm-12">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Студенти</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Відвідування</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Групи</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- subheader end -->
+
+      <!-- MainPage begin -->
+      <div class="row" id="content-columns">
+        <div class="col-sm-12" id="content-column">
+          <!-- status message-->
+          <div class="alert alert-warning" role="alert">
+            Изменения отменены
+          </div>
+          <h2 class="my-3">База студентов</h2>
+          <!-- button add student -->
+          <a class="btn btn-primary mb-3" href="#" role="button">Добавить...</a>
+
+          <!-- students begin -->
+          <div>
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>№</th>
+                  <th>Фото</th>
+                  <th>Фамилия</th>
+                  <th>Имя</th>
+                  <th>№ билета</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><img height="35" width="35" src="./img/Dmytro.jpeg" class="rounded-circle"></td>
+                  <td><a title="Изменить" href="#">Литвинов</a></td>
+                  <td><a title="Изменить" href="#">Дмитрий</a></td>
+                  <td>2123</td>
+                  <td>
+                    <div class="dropdown">
+                      <button type="button" class="btn btn-primaty dropdown-toggle" data-toggle="dropdown">
+                        Действие
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Изменить</a>
+                        <a class="dropdown-item" href="#">Посещения</a>
+                        <a class="dropdown-item" href="#">Удалить</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><img height="35" width="35" src="./img/Vitaliy.png" class="rounded-circle"></td>
+                  <td><a title="Изменить" href="#">Подоба</a></td>
+                  <td><a title="Изменить" href="#">Виталий</a></td>
+                  <td>213</td>
+                  <td>
+                    <div class="dropdown">
+                      <button type="button" class="btn btn-primaty dropdown-toggle" data-toggle="dropdown">
+                        Действие
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Изменить</a>
+                        <a class="dropdown-item" href="#">Посещения</a>
+                        <a class="dropdown-item" href="#">Удалить</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><img height="35" width="35" src="./img/Andrew.jpg" class="rounded-circle"></td>
+                  <td><a title="Изменить" href="#">Какойто</a></td>
+                  <td><a title="Изменить" href="#">Андрей</a></td>
+                  <td>345</td>
+                  <td>
+                    <div class="dropdown">
+                      <button type="button" class="btn btn-primaty dropdown-toggle" data-toggle="dropdown">
+                        Действие
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Изменить</a>
+                        <a class="dropdown-item" href="#">Посещения</a>
+                        <a class="dropdown-item" href="#">Удалить</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">4</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">5</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+        </div>
+      </div>
+      <!-- MainPage end -->
+
+      <!-- footer begin -->
+      <div class="row" id="footer">
+        <div class="col-sm-12">
+          &copy; 2020 copyleft
+        </div>
+      </div>
+      <!-- footer end -->
+    </div>
+    <!-- container end -->
+     <!-- Javascripts Section -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+          integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

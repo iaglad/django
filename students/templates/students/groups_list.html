@@ -1,0 +1,46 @@
+{% extends "students/base.html" %}
+{% load static %}
+{% block meta_title %}Группы{% endblock meta_title %}
+{% block title %}Список групп{% endblock title %}
+{% block content %}
+
+          <!-- button add group -->
+          <a class="btn btn-primary mb-3" href="{% url 'groups_add' %}" role="button">Добавить...</a>
+
+          <!-- groups begin -->
+          <div>
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>№</th>
+                  <th>Название</th>
+                  <th>Староста</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for group in groups %}
+                <tr>
+                  <td>{{ group.id }}</td>
+                  <td><a title="Изменить" href="{% url 'groups_edit' group.id %}">{{ group.name }}</a></td>
+                  <td><a title="Изменить" href="{% url 'students_edit' group.leader.id %}">{{ group.leader.name }}</a></td>
+                  <td>
+                    <div class="dropdown">
+                      <button type="button" class="btn btn-primaty dropdown-toggle" data-toggle="dropdown">
+                        Действие
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'groups_edit' group.id %}">Изменить</a>
+                        <a class="dropdown-item" href="/journal/{{ group.id }}">Посещения</a>
+                        <a class="dropdown-item" href="{% url 'groups_delete' group.id %}">Удалить</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% include "paginator.html" %}
+          </div>
+
+{% endblock content %}

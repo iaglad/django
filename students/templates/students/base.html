@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Сервис учета студентов - {% block meta_title %}{% endblock meta_title %}</title>
+    <meta name="description" content="Система учета студентов"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Include Styles -->
+    <link rel="stylesheet" href="{% static 'css/main.css'%}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/main.css'%}">
+    {% block extra_css %}{% endblock extra_css %}
+  </head>
+  <body>
+    <!-- container begin -->
+    <div class="container">
+
+      <!-- header begin -->
+      <div class="row mt-3" id="header">
+        <!-- logo -->
+        <div class="col-sm-8">
+          {% block logo%}
+          <h1>Сервис учета студентов</h1>
+          {% endblock logo%}
+        </div>
+        <!-- group selector -->
+        <div class="col-sm-4" id="group-selector">
+          {% block group-selector %}
+          <label for="group"><strong>Группа:</strong></label>
+          <select class="custom-select" name="group" id="group">
+            <option value="">Все студенты</option>
+            <option value="">МтМ - 21, Літвінов Дмитро (№ 254)</option>
+            <option value="">МтМ - 22, Віталій Подоба (№ 410)</option>
+          </select>
+          {% endblock %}
+        </div>
+      </div>
+      <!-- header end-->
+
+      <!-- subheader begin -->
+      <div class="row" id="sub-header">
+        <div class="col-sm-12">
+          <ul class="nav nav-tabs">
+            {% url "home" as url_home %}
+            <li class="nav-item">
+              <a class="nav-link {% if request.path == url_home %}active{% endif %}" href="{% url 'home' %}">Студенти</a>
+            </li>
+            {% url "journal" as url_journal %}
+            <li class="nav-item">
+              <a class="nav-link {% if url_journal in request.path %}active{% endif %}" href="/journal">Відвідування</a>
+            </li>
+            {% url "groups" as url_groups %}
+            <li class="nav-item">
+              <a class="nav-link {% if url_groups in request.path %}active{% endif %}" href="{% url 'groups' %}">Групи</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- subheader end -->
+
+      <!-- MainPage begin -->
+      <div class="row" id="content-columns">
+        <div class="col-sm-12" id="content-column">
+          <!-- status message-->
+          {% comment "Not user alerts" %}
+          <div class="alert alert-warning" role="alert">
+            Изменения отменены
+          </div>
+          {% endcomment %}
+          <h2>{% block title %}{% endblock title %}</h2>
+          {% block content %}{% endblock content %}
+
+        </div>
+      </div>
+      <!-- MainPage end -->
+
+      <!-- footer begin -->
+      {% block footer %}
+      <div class="row" id="footer">
+        <div class="col-sm-12">
+          &copy; 2020 copyleft
+        </div>
+      </div>
+      {% endblock %}
+      <!-- footer end -->
+    </div>
+    <!-- container end -->
+     <!-- Javascripts Section -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+          integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    {% block extra_js %}{% endblock extra_js %}
+  </body>
+</html>

@@ -1,0 +1,50 @@
+{% extends "students/base.html" %}
+{% load static %}
+{% block meta_title %}Студенты{% endblock meta_title %}
+{% block title %}База студентов{% endblock title %}
+{% block content %}
+
+          <!-- button add student -->
+          <a class="btn btn-primary mb-3" href="{% url 'students_add' %}" role="button">Добавить...</a>
+
+          <!-- students begin -->
+          <div>
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>№</th>
+                  <th>Фото</th>
+                  <th>Фамилия</th>
+                  <th>Имя</th>
+                  <th>№ билета</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for student in students %}
+                <tr>
+                  <td>{{ student.id }}</td>
+                  <td><img height="35" width="35" src="{% static student.image %}" class="rounded-circle"></td>
+                  <td><a title="Изменить" href="{% url 'students_edit' student.id %}">{{ student.last_name }}</a></td>
+                  <td><a title="Изменить" href="{% url 'students_edit' student.id %}">{{ student.first_name }}</a></td>
+                  <td>{{ student.ticket }}</td>
+                  <td>
+                    <div class="dropdown">
+                      <button type="button" class="btn btn-primaty dropdown-toggle" data-toggle="dropdown">
+                        Действие
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'students_edit' student.id %}">Изменить</a>
+                        <a class="dropdown-item" href="/journal/{{ student.id }}">Посещения</a>
+                        <a class="dropdown-item" href="{% url 'students_delete' student.id %}">Удалить</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% include "paginator.html" %}
+          </div>
+
+{% endblock content %}
