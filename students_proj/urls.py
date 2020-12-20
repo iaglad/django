@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from django.views.generic import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
-#from students import views as stud_views
+# from students import views as stud_views
 from students.views import students, groups, journal
 
 urlpatterns = [
@@ -26,15 +28,14 @@ urlpatterns = [
     path('students/add/', students.students_add, name='students_add'),
     path('students/<int:sid>/edit/', students.students_edit, name='students_edit'),
     path('students/<int:sid>/delete/', students.students_delete, name='students_delete'),
-    #groups urls
+    # groups urls
     path('groups/', groups.groups_list, name='groups'),
     path('groups/add/', groups.groups_add, name='groups_add'),
     path('groups/<int:gid>/edit/', groups.groups_edit, name='groups_edit'),
     path('groups/<int:gid>/delete/', groups.groups_delete, name='groups_delete'),
-    #journal urls
+    # journal urls
     path('journal/', journal.journal, name='journal'),
 
-#    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico', permanent=True)),
     re_path(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico'), name='favicon'),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

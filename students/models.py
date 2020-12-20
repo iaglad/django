@@ -45,3 +45,13 @@ class Student(models.Model):
         blank=True,
         verbose_name="Примечания"
     )
+
+    class Meta:
+        verbose_name = "Студент"
+        verbose_name_plural = "Студенты"
+    
+    def __str__(self):
+        full_name = '%s %s' % (self.last_name, self.first_name)
+        return full_name.strip()
+
+    
