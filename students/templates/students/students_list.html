@@ -54,6 +54,16 @@
                       {% endif %}
                     </a>
                   </th>
+                  <th>
+                    <a href="{% url 'home' %}?order_by=student_group{% if order_by == 'student_group' and reverse != '1' %}&reverse=1{% endif %}">
+                      Группа
+                      {% if order_by == 'student_group' and reverse != '1'%}
+                        &uarr;
+                      {% elif order_by == 'student_group' and reverse == '1'%}
+                        &darr;
+                      {% endif %}
+                    </a>
+                  </th>
                   <th>Действия</th>
                 </tr>
                 {% endwith %}
@@ -72,6 +82,7 @@
                   <td><a title="Изменить" href="{% url 'students_edit' student.id %}">{{ student.last_name }}</a></td>
                   <td><a title="Изменить" href="{% url 'students_edit' student.id %}">{{ student.first_name }}</a></td>
                   <td>{{ student.ticket }}</td>
+                  <td>{{ student.student_group }}</td>
                   <td>
                     <div class="dropdown">
                       <button type="button" class="btn btn-primaty dropdown-toggle" data-toggle="dropdown">
