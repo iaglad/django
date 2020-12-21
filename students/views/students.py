@@ -1,11 +1,30 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+#from .paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponse
-from students.models import Student
+from ..models import Student
+from .include.utils import err
 
 # views for students
 
 def students_list(request):
     students = Student.objects.all()
+    order_by = request.GET.get('order_by', '')
+    if order_by in ('id','last_name', 'first_name', 'ticket'):
+        students = students.order_by(order_by)
+        if request.GET.get('reverse', '') == '1':
+            students = students.reverse()
+    #paginator
+    paginator = Paginator(students, 3)
+    page = request.GET.get('page')
+    err('page', page)
+    try:
+        students = paginator.page(page)
+    except PageNotAnInteger:
+        students = paginator.page(1)
+    except EmptyPage:
+        students = paginator.page(paginator.num_pages)
+    #
     return render(request, 'students/students_list.html', {'students': students})
 
 
