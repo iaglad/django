@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-#views for journal
+# views for journal
 
 def journal(request):
     students = (

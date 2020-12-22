@@ -4,19 +4,19 @@ from django.http import HttpResponse
 from ..models import Group
 from .include.utils import err
 
-#views for groups
+# views for groups
 
 def groups_list(request):
     groups = Group.objects.all()
     order_by = request.GET.get('order_by', '')
-    if order_by in ('id','title', 'leader'):
+    if order_by in ('id', 'title', 'leader'):
         groups = groups.order_by(order_by)
         if request.GET.get('reverse', '') == '1':
             groups = groups.reverse()
-    #paginator
+    # paginator
     paginator = Paginator(groups, 2)
     page = request.GET.get('page')
-    err('page', page)
+    # err('page', page)
     try:
         groups = paginator.page(page)
     except PageNotAnInteger:

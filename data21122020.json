@@ -1,0 +1,358 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$150000$p4Dq4MMjzfxK$h75od9k+tLUUph7hWPqoel++Cs1wqRZA642sj0xNYcM=",
+        "last_login": "2020-12-19T19:17:08.498Z",
+        "is_superuser": true,
+        "username": "r00t",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2020-12-19T19:16:36.702Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "0delrobiyukvqvj6cqg0atfpcnpudk7o",
+    "fields": {
+        "session_data": "NTJiMmUyNTg0ZGMyNjM5MTkyZGQ1YzRjNzY5MjQzMDdhMjY1NmFlZDp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyMTNjZjgyOWQ5ZmQ3NzllNTdkZjM0MDY0NTE1ODQyNGYyNDBjMzVlIn0=",
+        "expire_date": "2021-01-02T19:17:08.612Z"
+    }
+},
+{
+    "model": "students.student",
+    "pk": 1,
+    "fields": {
+        "first_name": "Vitaliy",
+        "last_name": "Podoba",
+        "middle_name": "",
+        "birthday": "2020-12-16",
+        "photo": "Vitaliy_0lT9kcQ.png",
+        "ticket": "234",
+        "notes": "",
+        "student_group": null
+    }
+},
+{
+    "model": "students.student",
+    "pk": 2,
+    "fields": {
+        "first_name": "Roman",
+        "last_name": "Demo",
+        "middle_name": "",
+        "birthday": "2020-12-16",
+        "photo": "Dmytro_v4lzt68.jpeg",
+        "ticket": "911",
+        "notes": "",
+        "student_group": null
+    }
+},
+{
+    "model": "students.student",
+    "pk": 3,
+    "fields": {
+        "first_name": "Ivan",
+        "last_name": "Hladkykh",
+        "middle_name": "",
+        "birthday": "1975-12-10",
+        "photo": "Andrew_mtdd1Nk.jpg",
+        "ticket": "4823",
+        "notes": "hihihi",
+        "student_group": null
+    }
+},
+{
+    "model": "students.student",
+    "pk": 4,
+    "fields": {
+        "first_name": "Kolya",
+        "last_name": "Kolin",
+        "middle_name": "",
+        "birthday": "2020-12-21",
+        "photo": "",
+        "ticket": "56",
+        "notes": "",
+        "student_group": null
+    }
+},
+{
+    "model": "students.student",
+    "pk": 5,
+    "fields": {
+        "first_name": "Petya",
+        "last_name": "Petin",
+        "middle_name": "",
+        "birthday": "2020-12-21",
+        "photo": "",
+        "ticket": "34",
+        "notes": "",
+        "student_group": 1
+    }
+},
+{
+    "model": "students.group",
+    "pk": 1,
+    "fields": {
+        "title": "\u041c\u0422\u041c",
+        "leader": 1,
+        "notes": ""
+    }
+},
+{
+    "model": "students.group",
+    "pk": 2,
+    "fields": {
+        "title": "\u041f\u0422\u041f",
+        "leader": 2,
+        "notes": ""
+    }
+},
+{
+    "model": "students.group",
+    "pk": 3,
+    "fields": {
+        "title": "\u0420\u0422\u0420",
+        "leader": 3,
+        "notes": ""
+    }
+},
+{
+    "model": "students.group",
+    "pk": 4,
+    "fields": {
+        "title": "\u0423\u041a\u0423",
+        "leader": 4,
+        "notes": ""
+    }
+},
+{
+    "model": "students.group",
+    "pk": 5,
+    "fields": {
+        "title": "\u0415\u041a\u0415",
+        "leader": 5,
+        "notes": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2020-12-19T19:24:53.544Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "3",
+        "object_repr": "Hladkykh Ivan",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2020-12-20T14:44:47.926Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "3",
+        "object_repr": "Hladkykh Ivan",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"photo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2020-12-20T14:45:02.640Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "2",
+        "object_repr": "Demo Roman",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"photo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2020-12-20T14:45:09.287Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "1",
+        "object_repr": "Podoba Vitaliy",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"photo\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2020-12-21T07:54:10.613Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "3",
+        "object_repr": "Hladkykh Ivan",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2020-12-21T07:54:32.078Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "4",
+        "object_repr": "Kolin Kolya",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2020-12-21T07:54:43.247Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "5",
+        "object_repr": "Petin Petya",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2020-12-21T15:29:11.830Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "2",
+        "object_repr": "\u041f\u0422\u041f (Demo Roman)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2020-12-21T15:29:24.809Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "3",
+        "object_repr": "\u0420\u0422\u0420 (Hladkykh Ivan)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2020-12-21T15:29:36.343Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "4",
+        "object_repr": "\u0423\u041a\u0423 (Kolin Kolya)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2020-12-21T15:29:44.798Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "group"
+        ],
+        "object_id": "5",
+        "object_repr": "\u0415\u041a\u0415 (Petin Petya)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2020-12-21T15:52:46.040Z",
+        "user": [
+            "r00t"
+        ],
+        "content_type": [
+            "students",
+            "student"
+        ],
+        "object_id": "5",
+        "object_repr": "Petin Petya",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"student_group\"]}}]"
+    }
+}
+]
