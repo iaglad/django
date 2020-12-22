@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from ..models import Student
 from .include.utils import err
+from django.contrib import messages
 
 # views for students
 
@@ -17,13 +18,16 @@ def students_list(request):
     # paginator
     paginator = Paginator(students, 3)
     page = request.GET.get('page')
-    # err('page', page)
     try:
         students = paginator.page(page)
     except PageNotAnInteger:
-        students = paginator.page(1)
+        page = 1
+        students = paginator.page(page)
     except EmptyPage:
-        students = paginator.page(paginator.num_pages)
+        page = paginator.num_pages
+        students = paginator.page(page)
+    #
+    messages.success(request, 'Page= ' + str(page))
     #
     return render(request, 'students/students_list.html', {'students': students})
 

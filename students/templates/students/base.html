@@ -75,7 +75,6 @@
         </div>
       </div>
       <!-- MainPage end -->
-
       <!-- footer begin -->
       {% block footer %}
       <div class="row" id="footer">
@@ -85,6 +84,7 @@
       </div>
       {% endblock %}
       <!-- footer end -->
+      <div class="row">{% if messages %}<ul class="list-group  list-group-flush">{% for message in messages %}<li class="list-group-item">{{ message|safe }}</li>{% endfor %}</ul>{% endif %}</div>
     </div>
     <!-- container end -->
      <!-- Javascripts Section -->
