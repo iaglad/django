@@ -29,7 +29,7 @@ def students_list(request):
         page = paginator.num_pages
         students = paginator.page(page)
     #
-    messages.success(request, 'Page= ' + str(page))
+    #messages.success(request, 'Page= ' + str(page))
     #
     return render(request, 'students/students_list.html', {'students': students})
 
@@ -85,12 +85,13 @@ def students_add(request):
             if not errors:
                 student = Student(**data)
                 student.save()
-                status_str = '%s?status_message=Студент успешно добавлен: ' + data['first_name'] + ' ' + data['last_name']
-                return HttpResponseRedirect(status_str % reverse('home'))
+                messages.success(request, 'Студент успешно добавлен: ' + data['first_name'] + ' ' + data['last_name'])
+                return HttpResponseRedirect(reverse('home'))
             else:
                 return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title'), 'errors': errors})
         elif request.POST.get('cancel_button') is not None:
-            return HttpResponseRedirect('%s?status_message=Добавление студента отменено' % reverse('home'))
+            messages.warning(request, 'Добавление студента отменено')
+            return HttpResponseRedirect(reverse('home'))
     else:
         return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title')})
 

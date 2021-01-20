@@ -64,13 +64,11 @@
       <div class="row" id="content-columns">
         <div class="col-sm-12" id="content-column">
           <!-- status message-->
-          {% block status_message %}
-            {% if request.GET.status_message %}
-              <div class="alert alert-warning" role="alert">
-                {{ request.GET.status_message }}
-              </div>
-            {% endif %}
-          {% endblock %}
+          {% if messages %}
+            {% for message in messages %}
+                <div class="messages alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
           <h2>{% block title %}{% endblock title %}</h2>
           {% block content %}{% endblock content %}
 
@@ -86,7 +84,6 @@
       </div>
       {% endblock %}
       <!-- footer end -->
-      <div class="row">{% if messages %}<ul class="list-group  list-group-flush">{% for message in messages %}<li class="list-group-item">{{ message|safe }}</li>{% endfor %}</ul>{% endif %}</div>
     </div>
     <!-- container end -->
      <!-- Javascripts Section -->
