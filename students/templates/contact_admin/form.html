@@ -1,0 +1,20 @@
+{% extends "students/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block meta_title %}Связь с администратором{% endblock meta_title %}
+{% block title %}Связь с администратором{% endblock title %}
+
+{% block status_message %}
+  {% if form.errors %}
+    <div class="alert alert-warning" role="alert">
+      При добавлении обнаружены ошибки!
+    </div>
+  {% endif %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  {% crispy form %}
+
+{% endblock content %}

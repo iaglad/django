@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 # from students import views as stud_views
-from students.views import students, groups, journal
+from students.views import students, groups, journal, contact_admin
 
 urlpatterns = [
     # students urls
@@ -38,4 +38,5 @@ urlpatterns = [
 
     re_path(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico'), name='favicon'),
     path('admin/', admin.site.urls),
+    path('contact-admin/', contact_admin.contact_admin, name='contact_admin'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
