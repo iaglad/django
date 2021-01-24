@@ -26,7 +26,7 @@ urlpatterns = [
     # students urls
     path('', students.students_list, name='home'),
     path('students/add/', students.students_add, name='students_add'),
-    path('students/<int:sid>/edit/', students.students_edit, name='students_edit'),
+    path('students/<int:pk>/edit/', students.StudentUpdateView.as_view(), name='students_edit'),
     path('students/<int:sid>/delete/', students.students_delete, name='students_delete'),
     # groups urls
     path('groups/', groups.groups_list, name='groups'),

@@ -7,6 +7,11 @@ from ..models import Student, Group
 from django.contrib import messages
 from .include.utils import err
 from datetime import datetime
+from django.forms import ModelForm
+from django.views.generic import UpdateView
+from crispy_forms.bootstrap import FormActions
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 # views for students
 
@@ -102,3 +107,41 @@ def students_edit(request, sid):
 
 def students_delete(request, sid):
     return HttpResponse('<h1>Delete student %s</h1>' % sid)
+
+class StudentUpdateForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_action = reverse('students_edit', kwargs={'pk': kwargs['instance'].id})
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.help_text_inline = True
+        self.helper.html5_required = True
+        self.helper.label_class = 'col-sm-2 col-form-label'
+        self.helper.field_class = 'col-sm-10'
+        self.helper.layout.append(FormActions(
+            Submit('add_button', 'Сохранить'),
+            Submit('cancel_button', 'Отменить', css_class='btn-danger'),
+        ))
+
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    #fields = '__all__'
+    template_name = 'students/students_edit.html'
+    form_class = StudentUpdateForm
+
+    def get_success_url(self):
+        messages.success(self.request, 'Сохранено успешно')
+        return reverse('home')
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('cancel_button'):
+            messages.warning(request, 'Редактирование отменено')
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            return super().post(request, *args, **kwargs)
