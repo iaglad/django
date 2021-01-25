@@ -8,7 +8,7 @@ from django.contrib import messages
 from .include.utils import err
 from datetime import datetime
 from django.forms import ModelForm
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, CreateView
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -39,7 +39,7 @@ def students_list(request):
     return render(request, 'students/students_list.html', {'students': students})
 
 
-def students_add(request):
+def students_add1(request):
     if request.method == "POST":
         if request.POST.get('add_button') is not None:
             errors = {}
@@ -100,13 +100,46 @@ def students_add(request):
     else:
         return render(request, 'students/students_add.html', {'groups': Group.objects.all().order_by('title')})
 
+class StudentCreateForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = '__all__'
 
-def students_edit(request, sid):
-    return HttpResponse('<h1>Edit student %s</h1>' % sid)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_action = reverse('students_add')
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.help_text_inline = True
+        self.helper.html5_required = True
+        self.helper.label_class = 'col-sm-2 col-form-label'
+        self.helper.field_class = 'col-sm-10'
+        self.helper.layout.append(FormActions(
+            Submit('add_button', 'Сохранить'),
+            Submit('cancel_button', 'Отменить', css_class='btn-danger', formnovalidate='formnovalidate',),
+        ))
 
+class StudentCreateView(CreateView):
+    model = Student
+    template_name = 'students/students.html'
+    form_class = StudentCreateForm
 
-def students_delete(request, sid):
-    return HttpResponse('<h1>Delete student %s</h1>' % sid)
+    def get_success_url(self):
+        messages.success(self.request, 'Сохранено успешно')
+        return reverse('home')
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('cancel_button'):
+            messages.warning(request, 'Добавление отменено')
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            return super().post(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Добавить студента'
+        return context
 
 class StudentUpdateForm(ModelForm):
     class Meta:
@@ -125,14 +158,12 @@ class StudentUpdateForm(ModelForm):
         self.helper.field_class = 'col-sm-10'
         self.helper.layout.append(FormActions(
             Submit('add_button', 'Сохранить'),
-            Submit('cancel_button', 'Отменить', css_class='btn-danger'),
+            Submit('cancel_button', 'Отменить', css_class='btn-danger', formnovalidate='formnovalidate',),
         ))
-
 
 class StudentUpdateView(UpdateView):
     model = Student
-    #fields = '__all__'
-    template_name = 'students/students_edit.html'
+    template_name = 'students/students.html'
     form_class = StudentUpdateForm
 
     def get_success_url(self):
@@ -145,3 +176,13 @@ class StudentUpdateView(UpdateView):
             return HttpResponseRedirect(reverse('home'))
         else:
             return super().post(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Редактировать студента'
+        return context
+
+
+def students_delete(request, sid):
+    return HttpResponse('<h1>Delete student %s</h1>' % sid)
+

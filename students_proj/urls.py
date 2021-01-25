@@ -25,7 +25,8 @@ from students.views import students, groups, journal, contact_admin
 urlpatterns = [
     # students urls
     path('', students.students_list, name='home'),
-    path('students/add/', students.students_add, name='students_add'),
+    #path('students/add/', students.students_add, name='students_add'),
+    path('students/add/', students.StudentCreateView.as_view(), name='students_add'),
     path('students/<int:pk>/edit/', students.StudentUpdateView.as_view(), name='students_edit'),
     path('students/<int:sid>/delete/', students.students_delete, name='students_delete'),
     # groups urls
