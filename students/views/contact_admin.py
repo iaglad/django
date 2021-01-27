@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib import messages
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.views.generic.edit import FormView
 
 class ContactForm(forms.Form):
 
@@ -22,30 +23,21 @@ class ContactForm(forms.Form):
         self.helper.field_class = 'col-sm-10'
         self.helper.add_input(Submit('send_button', 'Послать'))
 
-    from_email = forms.EmailField(
-        label="Ваш e-mail:")
-    subject = forms.CharField(
-        label="Тема письма:",
-        max_length=128)
-    message = forms.CharField(
-        label="Текст:",
-        max_length=2560,
-        widget=forms.Textarea)
+    from_email = forms.EmailField(label="Ваш e-mail:")
+    subject = forms.CharField(label="Тема письма:", max_length=128)
+    message = forms.CharField(label="Текст:", max_length=2560, widget=forms.Textarea)
 
-def contact_admin(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            from_email = form.cleaned_data['from_email']
-            try:
-                send_mail(subject, message, from_email, [settings.ADMIN_EMAIL])
-            except Exception:
-                messages.error(request, 'Error send email to admin')
-            else:
-                messages.success(request, 'Email sent')
-            return HttpResponseRedirect(reverse('contact_admin'))
-    else:
-        form = ContactForm()
-    return render(request, 'contact_admin/form.html', {'form': form})
+class ContactView(FormView):
+    template_name = 'contact_admin/form.html'
+    form_class = ContactForm
+
+    def form_valid(self, form):
+        subject = form.cleaned_data['subject']
+        message = form.cleaned_data['message']
+        from_email = form.cleaned_data['from_email']
+        send_mail(subject, message, from_email, [settings.ADMIN_EMAIL])
+        messages.success(self.request, 'Email sent')
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('contact_admin')

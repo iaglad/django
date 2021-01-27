@@ -1,0 +1,24 @@
+{% extends "students/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block meta_title %}{{ title }}{% endblock meta_title %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block status_message %}
+  {% if form.errors %}
+    <div class="alert alert-warning" role="alert">
+      При добавлении обнаружены ошибки!
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  
+  <form action="{% url myurl object.id %}" method ="post">
+    {% csrf_token %}
+    <p>Вы уверены, что хотите удалить "{{ object }}"?</p>
+    <input type="submit" value="Да" name="delete_button" class="btn btn-danger"/>
+    <br/ > <br />
+  </form>
+
+{% endblock content %}
